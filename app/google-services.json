@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "908156757178",
+    "project_id": "fitroutine-96ddf",
+    "storage_bucket": "fitroutine-96ddf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908156757178:android:bfb189f7a4774e22ef4e83",
+        "android_client_info": {
+          "package_name": "com.example.equipodos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvEgSAbdAPM9TGl5I7nuqS3_g1S9lokVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
