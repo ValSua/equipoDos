@@ -76,11 +76,11 @@ class HomeFragment : Fragment() {
 
             }
 
-            if (routinesList.isEmpty()) {
-                view.findViewById<ImageView>(R.id.crearRutina).visibility = View.VISIBLE
-            } else {
-                view.findViewById<ImageView>(R.id.crearRutina).visibility = View.GONE
-            }
+//            if (routinesList.isEmpty()) {
+//                view.findViewById<ImageView>(R.id.crearRutina).visibility = View.VISIBLE
+//            } else {
+//                view.findViewById<ImageView>(R.id.crearRutina).visibility = View.GONE
+//            }
         }
 
     }

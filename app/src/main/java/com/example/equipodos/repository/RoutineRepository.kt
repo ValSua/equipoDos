@@ -57,6 +57,8 @@ class RoutineRepository {
             }
         }.addOnFailureListener {
             callback(null)
+        }
+    }
 
 
     fun obtenerRutina(email: String, index: Int, callback: (Routine?) -> Unit) {

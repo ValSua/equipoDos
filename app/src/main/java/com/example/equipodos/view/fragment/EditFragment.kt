@@ -41,6 +41,7 @@ class EditFragment: Fragment()  {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
+
             viewModel = ViewModelProvider(this).get(RoutineViewModel::class.java)
 
             auth = FirebaseAuth.getInstance()
@@ -61,7 +62,8 @@ class EditFragment: Fragment()  {
 
             val usuario = auth.currentUser // Obtén el email del usuario autenticado
             val email = usuario?.email.toString()
-            routineKey = 0
+            val position = requireArguments().getInt("position")
+            routineKey = position
 
 
             val buttonRegistrar = view.findViewById<Button>(R.id.crearRutina)
@@ -99,6 +101,7 @@ class EditFragment: Fragment()  {
 
 //            boton que debe actualizar la lista en bd
             buttonRegistrar.setOnClickListener {
+
                 viewModel.actualizarRutina(email, 0, exercises)
             }
 

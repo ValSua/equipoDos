@@ -26,6 +26,7 @@ class RoutineViewModel : ViewModel() {
 
     fun obtenerIdRutinas(email: String, callback: (List<Pair<String, String>>?) -> Unit) {
         routineRepository.obtenerIDRutinas(email, callback)
+    }
     fun obtenerRutina(email: String, key: Int) {
         routineRepository.obtenerRutina(email, key) { rutina ->
             _routine.value = rutina
