@@ -1,5 +1,7 @@
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.equipodos.model.Exercise
 import com.example.equipodos.model.Routine
 import com.example.equipodos.model.Usuario
 import com.example.equipodos.repository.RoutineRepository
@@ -9,6 +11,11 @@ class RoutineViewModel : ViewModel() {
 
     private val routineRepository = RoutineRepository()
     val exitoRegistro = MutableLiveData<Boolean>()
+    private val _routine = MutableLiveData<Routine?>()
+    val routine: LiveData<Routine?> get() = _routine
+    private val _updateSuccess = MutableLiveData<Boolean>()
+    val updateSuccess: LiveData<Boolean> get() = _updateSuccess
+
 
 
     fun registrarRutina(email: String, rutina: Routine) {
@@ -19,5 +26,15 @@ class RoutineViewModel : ViewModel() {
 
     fun obtenerIdRutinas(email: String, callback: (List<Pair<String, String>>?) -> Unit) {
         routineRepository.obtenerIDRutinas(email, callback)
+    fun obtenerRutina(email: String, key: Int) {
+        routineRepository.obtenerRutina(email, key) { rutina ->
+            _routine.value = rutina
+        }
+    }
+
+    fun actualizarRutina(email: String, key: Int, nuevosEjercicios: List<Exercise>) {
+        routineRepository.actualizarRutina(email, key, nuevosEjercicios) { success ->
+            _updateSuccess.value = success
+        }
     }
 }

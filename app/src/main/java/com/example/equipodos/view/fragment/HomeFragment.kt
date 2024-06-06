@@ -101,7 +101,7 @@ class HomeFragment : Fragment() {
             val bundle = Bundle().apply {
                 putString("projectId", projectId)
             }
-            findNavController().navigate(R.id.action_homeFragment_to_createRutineFragment, bundle)
+            findNavController().navigate(R.id.action_homeFragment_to_createRutineFragment)
         }
 
 

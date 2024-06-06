@@ -13,10 +13,17 @@
         <action
             android:id="@+id/action_homeFragment_to_createRutineFragment"
             app:destination="@id/createRutineFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editFragment"
+            app:destination="@id/editFragment" />
     </fragment>
     <fragment
         android:id="@+id/createRutineFragment"
         android:name="com.example.equipodos.view.fragment.CreateRutineFragment"
         android:label="fragment_create_rutine"
         tools:layout="@layout/fragment_create_rutine" />
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.example.equipodos.view.fragment.EditFragment"
+        android:label="EditFragment" />
 </navigation>
