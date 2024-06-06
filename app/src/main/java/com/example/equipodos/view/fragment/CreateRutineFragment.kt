@@ -11,8 +11,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.equipodos.R
@@ -47,6 +49,10 @@ class CreateRutineFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
+        val toolbar = view.findViewById<Toolbar>(R.id.create_toolbar)
+        toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
 
         // Inicializar el RecyclerView y el adaptador con una lista vacía
@@ -65,11 +71,16 @@ class CreateRutineFragment : Fragment() {
         val ejercicio1 = Exercise("Sentadilla", 10, 8)
         val ejercicio2 = Exercise("Saltos Verticales", 15, 4)
         val ejercicios = mutableListOf(ejercicio1, ejercicio2)
-        val nuevaRutina = Routine(nameRutina.text.toString(), exercises)
+
+        val buttonRegistrar = view.findViewById<Button>(R.id.crearRutina)
+//        buttonRegistrar.isEnabled = false
+//        buttonRegistrar.isEnabled = exercises.isNotEmpty()
 
         // Botón para registrar la rutina
-        val buttonRegistrar = view.findViewById<Button>(R.id.crearRutina)
+
         buttonRegistrar.setOnClickListener {
+            val nombreRutina = nameRutina.text.toString()
+            val nuevaRutina = Routine(nombreRutina, exercises)
             viewModel.registrarRutina(email, nuevaRutina)
         }
 
@@ -86,6 +97,7 @@ class CreateRutineFragment : Fragment() {
             if (exito) {
                 Toast.makeText(context, "Rutina registrada exitosamente", Toast.LENGTH_SHORT).show()
                 // Aquí puedes actualizar la UI o navegar a otro fragmento
+                findNavController().popBackStack()
             } else {
                 Toast.makeText(context, "Error al registrar la rutina", Toast.LENGTH_SHORT).show()
             }
