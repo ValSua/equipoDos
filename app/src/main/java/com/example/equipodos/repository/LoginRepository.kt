@@ -1,6 +1,7 @@
 package com.example.equipodos.repository
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class LoginRepository {
     private val firebaseAuth = FirebaseAuth.getInstance()
@@ -18,6 +19,11 @@ class LoginRepository {
         } else {
             isRegisterComplete(false)
         }
+    }
+
+    // Método para obtener el usuario actual
+    fun getCurrentUser(): FirebaseUser? {
+        return firebaseAuth.currentUser
     }
 
     fun loginUser(email: String, pass: String, isLogin: (Boolean) -> Unit) {

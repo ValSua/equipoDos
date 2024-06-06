@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    android:layout_marginTop="20dp"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/exerciseTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exercise Title"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/repetitionsLabel"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:text="Sets:"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/exerciseTitle"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/setsInput"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="4dp"
+        android:hint="00"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_button"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@id/repetitionsLabel"
+        app:layout_constraintTop_toTopOf="@id/repetitionsLabel" />
+
+    <TextView
+        android:id="@+id/seriesLabel"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:text="Reps:"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toStartOf="@id/repsInput"
+        app:layout_constraintTop_toBottomOf="@id/exerciseTitle"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/repsInput"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="120dp"
+        android:background="@drawable/rounded_button"
+        android:hint="00"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/seriesLabel" />
+
+    <ImageButton
+        android:id="@+id/deleteButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/delete_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintStart_toStartOf="@id/repsInput"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="22dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
