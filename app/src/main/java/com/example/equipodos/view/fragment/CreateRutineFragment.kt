@@ -103,11 +103,4 @@ class CreateRutineFragment : Fragment() {
             }
         })
     }
-
-    private fun mostraremail(){
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val userId = currentUser?.email.toString()
-        Toast.makeText(requireContext(), userId, Toast.LENGTH_SHORT).show()
-    }
-
 }

@@ -50,7 +50,12 @@ class HomeFragment : Fragment() {
 
 
         binding.btnGuardarArticulo.setOnClickListener {
-            guardarProducto()
+            //guardarProducto()
+           val rutina = 0
+            val bundle = Bundle().apply {
+                putString("projectId", rutina.toString())
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_editFragment,bundle)
         }
 
 
@@ -61,7 +66,7 @@ class HomeFragment : Fragment() {
             val bundle = Bundle().apply {
                 putString("projectId", projectId)
             }
-            findNavController().navigate(R.id.action_homeFragment_to_createRutineFragment, bundle)
+            findNavController().navigate(R.id.action_homeFragment_to_createRutineFragment)
         }
 
 
