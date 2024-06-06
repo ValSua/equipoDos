@@ -10,25 +10,6 @@ class RoutineRepository {
 
     private val db = FirebaseFirestore.getInstance()
 
-    fun obtenerUsuario(email: String, callback: (Usuario?) -> Unit) {
-        db.collection("usuarios").document(email).get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val usuario = document.toObject(Usuario::class.java)
-                    callback(usuario)
-                } else {
-                    callback(null)
-                }
-            }
-    }
-
-    fun registrarUsuario(usuario: Usuario, callback: (Boolean) -> Unit) {
-        db.collection("usuarios").document(usuario.email).set(usuario)
-            .addOnCompleteListener { task ->
-                callback(task.isSuccessful)
-            }
-    }
-
     fun registrarRutina(email: String, rutina: Routine, callback: (Boolean) -> Unit) {
         val usuarioRef = db.collection("usuarios").document(email)
 
@@ -51,4 +32,29 @@ class RoutineRepository {
             callback(false)
         }
     }
+
+    fun obtenerIDRutinas(email: String, callback: (List<Pair<String, String>>?) -> Unit) {
+        val usuarioRef = db.collection("usuarios").document(email)
+
+        usuarioRef.get().addOnSuccessListener { document ->
+            if (document.exists()) {
+                val rutinas = document.get("rutinas") as? List<Map<String, Any>>
+                if (rutinas != null) {
+                    val result = rutinas.map { rutina ->
+                        val key = rutina["key"] as? String ?: ""
+                        val nombre = rutina["nombre"] as? String ?: ""
+                        Pair(key, nombre)
+                    }
+                    callback(result)
+                } else {
+                    callback(emptyList())
+                }
+            } else {
+                callback(emptyList())
+            }
+        }.addOnFailureListener {
+            callback(null)
+        }
+    }
+
 }
