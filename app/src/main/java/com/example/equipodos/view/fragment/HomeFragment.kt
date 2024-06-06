@@ -9,10 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.equipodos.R
 import com.example.equipodos.databinding.FragmentHomeBinding
 import com.example.equipodos.model.Articulo
 import com.example.equipodos.view.HomeActivity
 import com.example.equipodos.view.LoginActivity
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -38,13 +41,36 @@ class HomeFragment : Fragment() {
         listarProducto()
     }
 
+
+
     private fun setup() {
         binding.btnLogOut.setOnClickListener {
             logOut()
         }
+
+
         binding.btnGuardarArticulo.setOnClickListener {
-            guardarProducto()
+            //guardarProducto()
+           val rutina = 0
+            val bundle = Bundle().apply {
+                putString("projectId", rutina.toString())
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_editFragment,bundle)
         }
+
+
+
+        // En el Fragmento Origen (HomeFragment)
+        binding.nuevarutina.setOnClickListener {
+            val projectId = FirebaseApp.getInstance().options.projectId
+            val bundle = Bundle().apply {
+                putString("projectId", projectId)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_createRutineFragment)
+        }
+
+
+
     }
     private fun guardarProducto() {
         val codigo = binding.etCodigo.text.toString()

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="42dp"
+    android:height="42dp"
+    android:viewportWidth="42"
+    android:viewportHeight="42">
+
+    <!-- Fondo del icono -->
+    <path
+        android:pathData="M5 0H37C39.7614 0 42 2.23858 42 5V37C42 39.7614 39.7614 42 37 42H5C2.23858 42 0 39.7614 0 37V5C0 2.23858 2.23858 0 5 0Z"
+        android:fillColor="#DDDDDD"/>
+
+    <!-- Línea horizontal de la suma -->
+    <path
+        android:pathData="M12,21H30"
+        android:strokeColor="#000000"
+        android:strokeWidth="2"/>
+
+    <!-- Línea vertical de la suma -->
+    <path
+        android:pathData="M21,12V30"
+        android:strokeColor="#000000"
+        android:strokeWidth="2"/>
+</vector>

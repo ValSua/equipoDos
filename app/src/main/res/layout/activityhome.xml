@@ -31,8 +31,8 @@ android:layout_height="match_parent">
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:contentDescription="@string/add_routine"
-        android:src="@drawable/ic_add" />
+        android:contentDescription="addRoutine"
+        android:src="@drawable/plus" />
 
 <!-- Barra de navegación inferior -->
 <com.google.android.material.bottomnavigation.BottomNavigationView
