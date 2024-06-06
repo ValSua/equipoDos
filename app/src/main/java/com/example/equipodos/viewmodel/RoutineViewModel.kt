@@ -2,6 +2,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.equipodos.model.Routine
 import com.example.equipodos.model.Usuario
+import com.example.equipodos.repository.RoutineRepository
 
 // UsuarioViewModel.kt
 class RoutineViewModel : ViewModel() {

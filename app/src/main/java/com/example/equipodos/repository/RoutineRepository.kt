@@ -1,3 +1,5 @@
+package com.example.equipodos.repository
+
 import com.example.equipodos.model.Routine
 import com.example.equipodos.model.Usuario
 import com.google.firebase.firestore.FieldValue
