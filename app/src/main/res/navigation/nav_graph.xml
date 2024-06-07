@@ -40,16 +40,19 @@
             android:id="@+id/action_detalleRutinaFragment_to_editFragment"
             app:destination="@id/editFragment" />
     </fragment>
-        android:id="@+id/profileFragment"
-        android:name="com.example.equipodos.view.fragment.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_personalUserInformationFragment"
-            app:destination="@id/personalUserInformationFragment" />
-    </fragment>
+
+
+
     <fragment
         android:id="@+id/personalUserInformationFragment"
         android:name="com.example.equipodos.view.fragment.PersonalUserInformationFragment"
         android:label="@layout/fragment_personal_user_information" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.equipodos.view.fragment.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_personalUserInformationFragment"
+            app:destination="@id/personalUserInformationFragment" />
+    </fragment>
 </navigation>
