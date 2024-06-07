@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.fragment.ProfileFragment"
+        android:background="#F2F2F4"
+        >
+
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de usuario"
+            android:fontFamily="@font/racing_sans_one"
+            android:textSize="24sp"
+            android:textColor="#000"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="38dp" android:id="@+id/textView"
+            android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton"
+            android:layout_width="373dp"
+            android:layout_height="102dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="89dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/rounded_card_button"
+            android:drawableStart="@drawable/rise_outlined"
+            android:text="Mi rendimiento"
+            android:textSize="24dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/viewPersonalInformation"
+            android:layout_width="369dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="14dp"
+            android:drawableStart="@drawable/user_circle"
+            android:background="@drawable/rounded_card_button"
+            android:text="Informacion personal"
+            android:textSize="24dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton" />
+
+        <TextView
+            android:id="@+id/TextViewQoute"
+            android:layout_width="298dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="129dp"
+            android:layout_marginEnd="54dp"
+            android:gravity="center"
+            android:text="FISICAMENTE FUERTE, MENTALMENTE INDESTRUCTIBLE..."
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.353"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPersonalInformation">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/btn_sign_out"
+            android:layout_width="126dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="49dp"
+            android:background="@drawable/round_button_background"
+            android:text="Cerrar sesión"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewQoute" />
+
+        <TextView
+            android:id="@+id/textViewVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Versión 1.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_sign_out" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

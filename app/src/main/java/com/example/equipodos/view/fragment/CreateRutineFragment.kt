@@ -1,5 +1,6 @@
 package com.example.equipodos.view.fragment
 
+
 import com.example.equipodos.view.ExerciseAdapter
 import RoutineViewModel
 import android.os.Bundle
@@ -30,15 +31,12 @@ class CreateRutineFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: RoutineViewModel
     private val exercises: MutableList<Exercise> = mutableListOf()
-
-
+    private lateinit var exerciseAdapter: ExerciseAdapter // Agrega una propiedad para el adaptador
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         return inflater.inflate(R.layout.fragment_create_rutine, container, false)
     }
 
@@ -46,7 +44,6 @@ class CreateRutineFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(RoutineViewModel::class.java)
-
         auth = FirebaseAuth.getInstance()
 
         val toolbar = view.findViewById<Toolbar>(R.id.create_toolbar)
@@ -54,49 +51,36 @@ class CreateRutineFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-
-        // Inicializar el RecyclerView y el adaptador con una lista vacía
-        var exercisesRecyclerView = view.findViewById<RecyclerView>(R.id.Exercises)
-        var exerciseAdapter = ExerciseAdapter(exercises) // Lista vacía
+        val exercisesRecyclerView = view.findViewById<RecyclerView>(R.id.Exercises)
+        exerciseAdapter = ExerciseAdapter(exercises) // Inicializa el adaptador
         exercisesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        exercisesRecyclerView.adapter = exerciseAdapter
+        exercisesRecyclerView.adapter = exerciseAdapter // Asigna el adaptador al RecyclerView
 
-
-
-        val usuario = auth.currentUser // Obtén el email del usuario autenticado
+        val usuario = auth.currentUser
         val email = usuario?.email.toString()
         val nameRutina = view.findViewById<EditText>(R.id.nombreRutina)
-
-        // Datos de ejemplo
-        val ejercicio1 = Exercise("Sentadilla", 10, 8)
-        val ejercicio2 = Exercise("Saltos Verticales", 15, 4)
-        val ejercicios = mutableListOf(ejercicio1, ejercicio2)
-
-        val buttonRegistrar = view.findViewById<Button>(R.id.crearRutina)
-//        buttonRegistrar.isEnabled = false
-//        buttonRegistrar.isEnabled = exercises.isNotEmpty()
-
-        // Botón para registrar la rutina
-
-        buttonRegistrar.setOnClickListener {
-            val nombreRutina = nameRutina.text.toString()
-            val nuevaRutina = Routine(nombreRutina, exercises)
-            viewModel.registrarRutina(email, nuevaRutina)
-        }
 
         val addExerciseButton = view.findViewById<ImageButton>(R.id.nuevoEjercicio)
         addExerciseButton.setOnClickListener {
             // Agregar un nuevo ejercicio a la lista
-            val newExercise = ejercicio1
+            val newExercise = Exercise("Nuevo ejercicio", 0, 0)
             exercises.add(newExercise)
-            // Notificar al adaptador de los cambios en los datos
-            exerciseAdapter.notifyDataSetChanged()
+            exerciseAdapter.notifyItemInserted(exercises.size - 1) // Notificar al adaptador sobre el nuevo elemento
+        }
+
+        val buttonRegistrar = view.findViewById<Button>(R.id.crearRutina)
+        buttonRegistrar.setOnClickListener {
+            val nombreRutina = nameRutina.text.toString()
+            if (exercises.isNotEmpty()) {
+                viewModel.registrarRutina(email, nombreRutina, exercises)
+            } else {
+                Toast.makeText(context, "Agregue al menos un ejercicio.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         viewModel.exitoRegistro.observe(viewLifecycleOwner, Observer { exito ->
             if (exito) {
                 Toast.makeText(context, "Rutina registrada exitosamente", Toast.LENGTH_SHORT).show()
-                // Aquí puedes actualizar la UI o navegar a otro fragmento
                 findNavController().popBackStack()
             } else {
                 Toast.makeText(context, "Error al registrar la rutina", Toast.LENGTH_SHORT).show()
@@ -104,3 +88,4 @@ class CreateRutineFragment : Fragment() {
         })
     }
 }
+

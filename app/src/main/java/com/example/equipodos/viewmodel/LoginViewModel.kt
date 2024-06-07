@@ -11,8 +11,8 @@ class LoginViewModel : ViewModel() {
     private val repository = LoginRepository()
 
     //registerUser se comunica con el repository
-    fun registerUser(email: String, pass: String, isRegister: (Boolean) -> Unit) {
-        repository.registerUser(email, pass) { response ->
+    fun registerUser(email: String, pass: String, nombre: String, apellido: String, isRegister: (Boolean) -> Unit) {
+        repository.registerUser(email, pass, nombre, apellido) { response ->
             isRegister(response)
         }
     }
@@ -20,6 +20,12 @@ class LoginViewModel : ViewModel() {
     fun loginUser(email: String, pass: String, isLogin: (Boolean) -> Unit) {
         repository.loginUser(email, pass){ response ->
             isLogin(response)
+        }
+    }
+
+    fun obtenerNombreApellidoUsuario(email: String, onComplete: (nombre: String?, apellido: String?) -> Unit) {
+        repository.obtenerNombreApellidoUsuario(email) { nombre, apellido ->
+            onComplete(nombre, apellido)
         }
     }
 
