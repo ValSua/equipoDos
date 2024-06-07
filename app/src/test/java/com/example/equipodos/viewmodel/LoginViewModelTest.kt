@@ -24,5 +24,17 @@ class LoginViewModelTest {
     @Test
     fun `test método registerUser` (){
 
+        //given (qué necesitamos:condiciones previas necesarias para que la prueba se ejecute correctamente)
+        val email = "ejemplo@gmail.com"
+        val pass = 1234567
+        val nombre = "maria"
+        val apellido = "marin"
+        //val expectedResult =
+
+        //when (Aquí, ejecutas el código o la función que estás evaluando.)
+        //val result =
+
+        //Then (lo que tiene que pasar:resultados esperados )
+        //assertEquals(expectedResult, result,0.0)
     }
 }

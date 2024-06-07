@@ -15,7 +15,7 @@
         android:theme="@style/Theme.EquipoDos"
         tools:targetApi="31">
         <activity
-            android:name=".view.PersonalUserInformationActivity"
+            android:name=".view.PersonalUserInformation "
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
