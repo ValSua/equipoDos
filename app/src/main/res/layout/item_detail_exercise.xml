@@ -15,31 +15,31 @@
         android:background="@color/white"
         android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/imageViewClose"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:contentDescription="@null"
-            android:src="@drawable/close_24"
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/editTextNameExercise"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="40dp"
-            android:autofillHints="name"
-            android:background="@drawable/edittext_border"
-            android:hint="@string/nombre_del_ejercicio"
-            android:inputType="text"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_constraintVertical_bias="0.088" />
+
+        <TextView
+            android:id="@+id/textViewNameExercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="40dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@string/nombre_del_ejercicio"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toEndOf="@+id/radioButton"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/textView"
@@ -48,8 +48,9 @@
             android:text="@string/sets"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:layout_marginStart="75dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextNameExercise"/>
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameExercise" />
 
         <EditText
             android:id="@+id/editTextSets"
@@ -59,6 +60,7 @@
             android:autofillHints="name"
             android:background="@drawable/edittext_border2"
             android:hint="@string/_00"
+            android:enabled="false"
             android:inputType="text"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -66,7 +68,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNameExercise"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameExercise"
             app:layout_constraintVertical_bias="0.506"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -80,7 +82,7 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/editTextSets"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNameExercise" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameExercise" />
 
         <EditText
             android:id="@+id/editTextReps"
@@ -90,6 +92,7 @@
             android:autofillHints="name"
             android:background="@drawable/edittext_border2"
             android:hint="@string/_00"
+            android:enabled="false"
             android:inputType="text"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -97,7 +100,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNameExercise"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameExercise"
             app:layout_constraintVertical_bias="0.506"
             tools:ignore="TouchTargetSizeCheck" />
 
