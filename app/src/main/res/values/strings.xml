@@ -2,4 +2,6 @@
     <string name="app_name">Fit Routine</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="titleexercise">Ejercicios</string>
+    <string name="addExercisa">Ejercicios</string>
 </resources>
