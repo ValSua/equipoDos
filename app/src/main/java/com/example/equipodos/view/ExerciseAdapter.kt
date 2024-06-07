@@ -43,11 +43,16 @@ class ExerciseAdapter(private val exercises: MutableList<Exercise>) :
 
         fun bind(exercise: Exercise) {
             // Establecer el nombre del ejercicio
-            exerciseTitle.text = exercise.name
+            //exerciseTitle.text = exercise.name
 
             // Establecer los valores de reps y sets
             repsInput.setText(exercise.reps.toString())
             setsInput.setText(exercise.sets.toString())
+
+            ///////////////////////////////////////
+            exerciseTitle.setText(exercise.name.toString())
+            ///////////////////////////////////
+
 
             // Agregar TextWatcher a los campos de reps y sets
             repsInput.addTextChangedListener(object : TextWatcher {
@@ -72,6 +77,19 @@ class ExerciseAdapter(private val exercises: MutableList<Exercise>) :
                 }
             })
 
+            ////////////////////////////////////////////////////////
+
+            exerciseTitle.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    val newName = s?.toString() ?: "Nombre Ejercicio"
+                    exercise.name = newName.toString()
+                }
+            })
+
             // Agregar clic listener al botón de eliminar
             deleteButton.setOnClickListener {
                 // Remover el ejercicio de la lista y notificar al adaptador
@@ -82,5 +100,7 @@ class ExerciseAdapter(private val exercises: MutableList<Exercise>) :
                 }
             }
         }
+
+
     }
 }
