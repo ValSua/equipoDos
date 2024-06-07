@@ -9,8 +9,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -18,14 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.equipodos.R
 import com.example.equipodos.databinding.FragmentHomeBinding
-import com.example.equipodos.model.Articulo
-import com.example.equipodos.model.Routine
 import com.example.equipodos.view.HomeActivity
 import com.example.equipodos.view.LoginActivity
 import com.example.equipodos.view.RoutineAdapter
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding

@@ -102,7 +102,7 @@ class EditFragment: Fragment()  {
 //            boton que debe actualizar la lista en bd
             buttonRegistrar.setOnClickListener {
 
-                viewModel.actualizarRutina(email, 0, exercises)
+                viewModel.actualizarRutina(email, position, exercises)
             }
 
 //            boton para añadir ejercicios a la lista

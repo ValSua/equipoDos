@@ -14,8 +14,9 @@
             android:id="@+id/action_homeFragment_to_createRutineFragment"
             app:destination="@id/createRutineFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_editFragment"
-            app:destination="@id/editFragment" />
+            android:id="@+id/action_homeFragment_to_detalleRutinaFragment2"
+            app:destination="@id/detalleRutinaFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/createRutineFragment"
@@ -26,4 +27,12 @@
         android:id="@+id/editFragment"
         android:name="com.example.equipodos.view.fragment.EditFragment"
         android:label="EditFragment" />
+    <fragment
+        android:id="@+id/detalleRutinaFragment"
+        android:name="com.example.equipodos.view.fragment.DetalleRutinaFragment"
+        android:label="DetalleRutinaFragment" >
+        <action
+            android:id="@+id/action_detalleRutinaFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+    </fragment>
 </navigation>

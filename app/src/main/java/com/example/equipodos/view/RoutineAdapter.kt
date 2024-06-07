@@ -25,7 +25,7 @@ class RoutineAdapter(private val routines: MutableList<Pair<String, String>>) : 
                 putInt("position", listposition) // Pasar la posición como argumento al fragmento de edición
             }
             // Navegar al fragmento de edición y pasar el ID de la rutina como argumento
-            holder.itemView.findNavController().navigate(R.id.action_homeFragment_to_editFragment, bundle)
+            holder.itemView.findNavController().navigate(R.id.action_homeFragment_to_detalleRutinaFragment2, bundle)
         }
     }
 
