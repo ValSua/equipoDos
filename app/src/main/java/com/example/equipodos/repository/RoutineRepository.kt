@@ -25,7 +25,7 @@ class RoutineRepository {
                     }
             } else {
                 // El documento no existe, crear uno nuevo con la rutina
-                val nuevoUsuario = Usuario(email, listOf(rutina))
+                val nuevoUsuario = Usuario(email, listOf(rutina), "", "")
                 usuarioRef.set(nuevoUsuario)
                     .addOnCompleteListener { task ->
                         callback(task.isSuccessful)
