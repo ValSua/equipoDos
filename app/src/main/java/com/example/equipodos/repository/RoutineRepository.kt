@@ -15,24 +15,38 @@ class RoutineRepository {
 
     fun registrarRutina(email: String, rutina: Routine, callback: (Boolean) -> Unit) {
         val usuarioRef = db.collection("usuarios").document(email)
-
         usuarioRef.get().addOnSuccessListener { document ->
             if (document.exists()) {
-                // El documento existe, actualizar la lista de rutinas
-                usuarioRef.update("rutinas", FieldValue.arrayUnion(rutina))
-                    .addOnCompleteListener { task ->
-                        callback(task.isSuccessful)
-                    }
+                val rutinas = document.get("rutinas") as? MutableList<Map<String, Any>> ?: mutableListOf()
+
+                // Crear una lista de ejercicios para la nueva rutina
+                val nuevosEjercicios = rutina.exercise.map { ejercicio ->
+                    // Crear un nuevo mapa para cada ejercicio con sus valores correspondientes
+                    mapOf(
+                        "name" to ejercicio.name,
+                        "reps" to ejercicio.reps,
+                        "sets" to ejercicio.sets
+                    )
+                }
+
+                // Crear un nuevo mapa para la nueva rutina con su lista de ejercicios
+                val nuevaRutinaMap = mapOf(
+                    "nombre" to rutina.nombre,
+                    "exercise" to nuevosEjercicios
+                )
+
+                // Agregar la nueva rutina a la lista de rutinas
+                rutinas.add(nuevaRutinaMap)
+
+                // Actualizar la lista de rutinas en la base de datos
+                usuarioRef.update("rutinas", rutinas).addOnCompleteListener { task ->
+                    callback(task.isSuccessful)
+                }
             } else {
-                // El documento no existe, crear uno nuevo con la rutina
-                val nuevoUsuario = Usuario(email, listOf(rutina), "", "")
-                usuarioRef.set(nuevoUsuario)
-                    .addOnCompleteListener { task ->
-                        callback(task.isSuccessful)
-                    }
+                callback(false) // El documento no existe
             }
         }.addOnFailureListener {
-            callback(false)
+            callback(false) // Error al obtener el documento
         }
     }
 

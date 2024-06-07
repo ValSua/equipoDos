@@ -98,9 +98,6 @@ class EditFragment: Fragment()  {
 
 
 //            boton que debe actualizar la lista en bd
-            buttonRegistrar.setOnClickListener {
-                viewModel.actualizarRutina(email, 0, exercises)
-            }
 
 //            boton para añadir ejercicios a la lista
             val addExerciseButton = view.findViewById<ImageButton>(R.id.nuevoEjercicio)
@@ -110,6 +107,10 @@ class EditFragment: Fragment()  {
                 exercises.add(newExercise)
                 // Notificar al adaptador de los cambios en los datos
                 exerciseAdapter.notifyDataSetChanged()
+            }
+
+            buttonRegistrar.setOnClickListener {
+                viewModel.actualizarRutina(email, 0, exercises)
             }
 
             viewModel.updateSuccess.observe(viewLifecycleOwner, Observer { success ->

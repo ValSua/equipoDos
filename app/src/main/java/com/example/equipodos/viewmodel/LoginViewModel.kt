@@ -23,6 +23,12 @@ class LoginViewModel : ViewModel() {
         }
     }
 
+    fun obtenerNombreApellidoUsuario(email: String, onComplete: (nombre: String?, apellido: String?) -> Unit) {
+        repository.obtenerNombreApellidoUsuario(email) { nombre, apellido ->
+            onComplete(nombre, apellido)
+        }
+    }
+
     // Método para obtener el usuario actual
     fun getCurrentUser(): FirebaseUser? {
         return repository.getCurrentUser()

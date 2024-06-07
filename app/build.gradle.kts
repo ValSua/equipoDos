@@ -72,6 +72,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.runtime:runtime")
     implementation("androidx.compose.material3:material3-android:1.2.1")
+    implementation("androidx.activity:activity:1.9.0")
 
     //testing
     testImplementation("junit:junit:4.13.2")
@@ -83,6 +84,7 @@ dependencies {
     debugImplementation ("org.jacoco:org.jacoco.core:0.8.7")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.2.1")
 
     // Firestore
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
