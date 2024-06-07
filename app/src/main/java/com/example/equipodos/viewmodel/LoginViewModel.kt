@@ -11,8 +11,8 @@ class LoginViewModel : ViewModel() {
     private val repository = LoginRepository()
 
     //registerUser se comunica con el repository
-    fun registerUser(email: String, pass: String, isRegister: (Boolean) -> Unit) {
-        repository.registerUser(email, pass) { response ->
+    fun registerUser(email: String, pass: String, nombre: String, apellido: String, isRegister: (Boolean) -> Unit) {
+        repository.registerUser(email, pass, nombre, apellido) { response ->
             isRegister(response)
         }
     }
