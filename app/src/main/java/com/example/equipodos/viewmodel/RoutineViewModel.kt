@@ -18,15 +18,16 @@ class RoutineViewModel : ViewModel() {
 
 
 
-    fun registrarRutina(email: String, rutina: Routine) {
-        routineRepository.registrarRutina(email, rutina) { exito ->
-            exitoRegistro.value = exito
+
+    fun registrarRutina(email: String, nombreRutina: String, exercises: List<Exercise>) {
+        val nuevaRutina = Routine(nombreRutina, exercises)
+        routineRepository.registrarRutina(email, nuevaRutina) { success ->
+            // Manejar el resultado de la operación, por ejemplo, actualizando la UI
+            exitoRegistro.value = success
         }
     }
 
-    fun obtenerIdRutinas(email: String, callback: (List<Pair<String, String>>?) -> Unit) {
-        routineRepository.obtenerIDRutinas(email, callback)
-    }
+
     fun obtenerRutina(email: String, key: Int) {
         routineRepository.obtenerRutina(email, key) { rutina ->
             _routine.value = rutina
@@ -38,4 +39,6 @@ class RoutineViewModel : ViewModel() {
             _updateSuccess.value = success
         }
     }
+
+    
 }

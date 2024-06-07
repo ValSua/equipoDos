@@ -87,6 +87,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_createRutineFragment)
         }
 
+        binding.btnPerfil.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
+
 
 
     }

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -89,14 +90,18 @@ class EditFragment: Fragment()  {
                 viewModel.obtenerRutina(email, key)
             }
 
+            val namerutinaText : TextView = view.findViewById(R.id.nombreRutina)
+
             // Observar la rutina obtenida
             viewModel.routine.observe(viewLifecycleOwner, Observer { rutina ->
                 rutina?.let {
+                    namerutinaText.setText(rutina.nombre)
                     exercises.clear()
                     exercises.addAll(it.exercise)
                     exerciseAdapter.notifyDataSetChanged()
                 }
             })
+
 
 
 //            boton que debe actualizar la lista en bd
@@ -109,10 +114,14 @@ class EditFragment: Fragment()  {
             val addExerciseButton = view.findViewById<ImageButton>(R.id.nuevoEjercicio)
             addExerciseButton.setOnClickListener {
                 // Agregar un nuevo ejercicio a la lista
-                val newExercise = ejercicio2
+                // Agregar un nuevo ejercicio a la lista
+                val newExercise = Exercise("Nuevo ejercicio", 0, 0)
                 exercises.add(newExercise)
-                // Notificar al adaptador de los cambios en los datos
-                exerciseAdapter.notifyDataSetChanged()
+                exerciseAdapter.notifyItemInserted(exercises.size - 1) // Notificar al adaptador sobre el nuevo elemento
+            }
+
+            buttonRegistrar.setOnClickListener {
+                viewModel.actualizarRutina(email, 0, exercises)
             }
 
             viewModel.updateSuccess.observe(viewLifecycleOwner, Observer { success ->
