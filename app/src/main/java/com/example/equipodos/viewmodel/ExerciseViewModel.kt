@@ -7,18 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.equipodos.model.Exercises
 import com.example.equipodos.model.ListExercise
 import com.example.equipodos.repository.ExerciseRepository
-import kotlinx.coroutines.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ExerciseViewModel  @Inject constructor(
     private val repository : ExerciseRepository ): ViewModel() {
-
-
-    fun registrarEjercicio(exercise: Exercises, callback: (Boolean) -> Unit) {
-        repository.registrarEjercicio(exercise, callback)
-    }
 
     private val _listExercise = MutableLiveData<MutableList<ListExercise>>()
     val listInventory: LiveData<MutableList<ListExercise>> get() = _listExercise
@@ -27,8 +22,8 @@ class ExerciseViewModel  @Inject constructor(
     val progresState: LiveData<Boolean> = _progresState
 
     //para almacenar una lista de productos
-    private val _listProducts = MutableLiveData<MutableList<Exercises>>()
-    val listProducts: LiveData<MutableList<Exercises>> = _listProducts
+    private val _listExercises = MutableLiveData<MutableList<Exercises>>()
+    val listExercises: LiveData<MutableList<Exercises>> = _listExercises
 
     fun guardarEjercicio(listExercise: ListExercise) {
         viewModelScope.launch {
@@ -37,6 +32,19 @@ class ExerciseViewModel  @Inject constructor(
             try {
                 repository.guardarEjercicio(listExercise)
                 _progresState.value = false
+            } catch (e: Exception) {
+                _progresState.value = false
+            }
+        }
+    }
+
+    fun getExercise() {
+        viewModelScope.launch {
+            _progresState.value = true
+            try {
+                _listExercises.value = repository.getExercise()
+                _progresState.value = false
+
             } catch (e: Exception) {
                 _progresState.value = false
             }

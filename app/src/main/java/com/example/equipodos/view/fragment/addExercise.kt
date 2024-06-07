@@ -30,6 +30,7 @@ class addExercise: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         controladores()
+        observerViewModel()
     }
 
     private fun controladores() {
@@ -48,4 +49,19 @@ class addExercise: Fragment() {
         findNavController().popBackStack()
 
     }
+
+    private fun observerViewModel(){
+        observerListExercise()
+    }
+
+    private fun observerListExercise() {
+
+        exerciseViewModel.getExercise()
+        exerciseViewModel.listExercises.observe(viewLifecycleOwner){ lista ->
+
+            val exercise = lista[0]
+            binding.etTitle.setText(exercise.name)
+        }
+    }
+
 }
