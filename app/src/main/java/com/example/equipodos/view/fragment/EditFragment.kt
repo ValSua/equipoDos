@@ -99,7 +99,6 @@ class EditFragment: Fragment()  {
 
 //            boton que debe actualizar la lista en bd
 
-
 //            boton para añadir ejercicios a la lista
             val addExerciseButton = view.findViewById<ImageButton>(R.id.nuevoEjercicio)
             addExerciseButton.setOnClickListener {

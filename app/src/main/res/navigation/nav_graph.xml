@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_editFragment"
             app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/createRutineFragment"
@@ -26,4 +29,17 @@
         android:id="@+id/editFragment"
         android:name="com.example.equipodos.view.fragment.EditFragment"
         android:label="EditFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.equipodos.view.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_personalUserInformationFragment"
+            app:destination="@id/personalUserInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personalUserInformationFragment"
+        android:name="com.example.equipodos.view.fragment.PersonalUserInformationFragment"
+        android:label="@layout/fragment_personal_user_information" />
 </navigation>

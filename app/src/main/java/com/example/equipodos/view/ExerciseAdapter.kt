@@ -26,6 +26,7 @@ class ExerciseAdapter(private val exercises: MutableList<Exercise>) :
         holder.bind(currentExercise)
     }
 
+
     override fun getItemCount() = exercises.size
 
     fun updateExercises(newExercises: List<Exercise>) {

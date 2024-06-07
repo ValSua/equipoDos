@@ -117,6 +117,13 @@
                 android:text="nueva rutina"
                 tools:ignore="MissingConstraints" />
 
+            <Button
+                android:id="@+id/btnPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="perfil"
+                tools:ignore="MissingConstraints" />
+
         </LinearLayout>
 
 
