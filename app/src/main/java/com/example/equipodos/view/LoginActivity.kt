@@ -44,14 +44,13 @@ class LoginActivity : AppCompatActivity() {
 
     private fun togglePasswordVisibility(editText: EditText) {
         if (editText.transformationMethod == null) {
-            // Si la contraseña es visible, ocúltala
+
             editText.transformationMethod = PasswordTransformationMethod.getInstance()
         } else {
-            // Si la contraseña está oculta, muéstrala
+
             editText.transformationMethod = null
         }
 
-        // Mueve el cursor al final del texto
         editText.setSelection(editText.text.length)
     }
 

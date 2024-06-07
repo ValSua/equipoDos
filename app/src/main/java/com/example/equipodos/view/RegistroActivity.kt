@@ -52,14 +52,13 @@ class RegistroActivity : AppCompatActivity() {
 
     private fun togglePasswordVisibility(editText: EditText) {
         if (editText.transformationMethod == null) {
-            // Si la contraseña es visible, ocúltala
+
             editText.transformationMethod = PasswordTransformationMethod.getInstance()
         } else {
-            // Si la contraseña está oculta, muéstrala
+
             editText.transformationMethod = null
         }
 
-        // Mueve el cursor al final del texto
         editText.setSelection(editText.text.length)
     }
 
@@ -72,21 +71,6 @@ class RegistroActivity : AppCompatActivity() {
         finish()
     }
 
-    /*  private fun registerUser(){
-          val email = binding.etCorreo.text.toString()
-          val pass = binding.etPassword.text.toString()
-          val confirmpass = binding.etConfirmPassword.text.toString()
-          val nombre = binding.etNombre.text.toString()
-          val apellido = binding.etNombre.text.toString()
-          loginViewModel.registerUser(email,pass) { isRegister ->
-              if (isRegister) {
-                  goToHome(email)
-              } else {
-                  Toast.makeText(this, "Error en el registro", Toast.LENGTH_SHORT).show()
-              }
-
-          }
-      }*/
 
     private fun registerUser() {
         val email = binding.etCorreo.text.toString()
