@@ -6,5 +6,7 @@ data class ListExercise (
 
     val name: String = " ",
 
-    val description: String = ""
+    val description: String = "",
+
+    var isSelected: Boolean
 )

@@ -50,4 +50,23 @@ class ExerciseRepository {
             exercisesList
           }
     }
+
+    suspend fun getListExercises(): MutableList<Exercises> {
+        return withContext(Dispatchers.IO) {
+            val db = FirebaseFirestore.getInstance()
+            val exercisesList = mutableListOf<Exercises>()
+            try {
+                val snapshot = db.collection("exercises").get().await()
+                for (document in snapshot.documents) {
+                    val exercise = document.toObject(Exercises::class.java)
+                    if (exercise != null) {
+                        exercisesList.add(exercise)
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            exercisesList
+        }
+    }
 }
