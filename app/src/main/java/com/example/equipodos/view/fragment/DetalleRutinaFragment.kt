@@ -32,6 +32,7 @@ class DetalleRutinaFragment : Fragment() {
     private lateinit var viewModel: RoutineViewModel
     private val exercises: MutableList<Exercise> = mutableListOf()
     private var routineKey: Int? = null
+    val exerciseAdapter = ExerciseDetailAdapter(exercises) // Lista vacía
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +61,7 @@ class DetalleRutinaFragment : Fragment() {
 
         // Inicializar el RecyclerView y el adaptador con una lista vacía
         val exercisesRecyclerView = view.findViewById<RecyclerView>(R.id.ejercicios)
-        val exerciseAdapter = ExerciseDetailAdapter(exercises) // Lista vacía
+
         exercisesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         exercisesRecyclerView.adapter = exerciseAdapter
 
@@ -79,6 +80,10 @@ class DetalleRutinaFragment : Fragment() {
             viewModel.obtenerRutina(email, key)
         }
 
+
+
+
+
         // Observar la rutina obtenida
         viewModel.routine.observe(viewLifecycleOwner, Observer { rutina ->
             rutina?.let {
@@ -86,6 +91,7 @@ class DetalleRutinaFragment : Fragment() {
                 exercises.clear()
                 exercises.addAll(it.exercise)
                 exerciseAdapter.notifyDataSetChanged()
+
             }
         })
 
@@ -100,7 +106,19 @@ class DetalleRutinaFragment : Fragment() {
             findNavController().navigate(R.id.action_detalleRutinaFragment_to_editFragment,bundle)
         }
 
+        // Verificar si todos los elementos están marcados
+        // Verificar si todos los elementos están marcados
+        if (exerciseAdapter.areAllChecked()) {
+            Toast.makeText(requireContext(), "¡Todos los ejercicios están completados!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Al menos un ejercicio no está completado", Toast.LENGTH_SHORT).show()
+        }
+        // Mostrar el Toast
+
 
     }
+
+
+
 
 }

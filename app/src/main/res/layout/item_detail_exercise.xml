@@ -7,6 +7,15 @@
     android:backgroundTint="@color/white"
     android:layout_marginTop="20dp"
     android:padding="8dp">
+    <ImageView
+        android:id="@+id/completedImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/plus"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" /> <!-- La imagen inicia con visibilidad "gone" -->
 
     <CheckBox
         android:id="@+id/ejercicioTerminado"
