@@ -37,7 +37,7 @@
                     card_view:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvQuantity"
+                    android:id="@+id/tvDescription"
                     android:layout_width="263dp"
                     android:layout_height="54dp"
                     android:layout_marginStart="52dp"

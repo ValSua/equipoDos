@@ -31,7 +31,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="450dp"
             android:layout_marginBottom="20dp"
             tools:listitem="@layout/item_details_exercise"
             app:layout_constraintTop_toBottomOf="@id/svBuscar"
@@ -59,7 +59,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <ImageButton
-                android:id="@+id/nuevoEjercicio"
+                android:id="@+id/newExercise"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginStart="180dp"
