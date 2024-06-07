@@ -48,9 +48,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireActivity().getSharedPreferences("shared", Context.MODE_PRIVATE)
-//        dataLogin()
+
         setup()
-//        listarProducto()
 
         viewModel = ViewModelProvider(this).get(RoutineViewModel::class.java)
         auth = FirebaseAuth.getInstance()
@@ -64,8 +63,6 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = routineAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-
-
         // Obtener rutinas y actualizar la lista
         viewModel.obtenerIdRutinas(email) { rutinas ->
             rutinas?.let {
@@ -76,24 +73,14 @@ class HomeFragment : Fragment() {
 
             }
 
-//            if (routinesList.isEmpty()) {
-//                view.findViewById<ImageView>(R.id.crearRutina).visibility = View.VISIBLE
-//            } else {
-//                view.findViewById<ImageView>(R.id.crearRutina).visibility = View.GONE
-//            }
         }
 
     }
 
-
-
     private fun setup() {
-//        binding.btnLogOut.setOnClickListener {
-//            logOut()
-//        }
-
-
-
+        binding.btnLogOut.setOnClickListener {
+            logOut()
+        }
 
         // En el Fragmento Origen (HomeFragment)
         binding.nuevarutina.setOnClickListener {
@@ -108,23 +95,6 @@ class HomeFragment : Fragment() {
 
     }
 
-
-
-
-//    private fun listarProducto(){
-//        db.collection("articulo").get().addOnSuccessListener {
-//            var data = ""
-//            for (document in it.documents) {
-//                // Aquí puedes personalizar cómo deseas mostrar cada artículo en la lista
-//                data += "Código: ${document.get("codigo")} " +
-//                        "Nombre: ${document.get("nombre")} " +
-//                        "Precio: ${document.get("precio")}\n\n"
-//
-//            }
-//            binding.tvListProducto.text = data
-//        }
-//    }
-
 //    private fun dataLogin() {
 //        val bundle = requireActivity().intent.extras
 //        val email = bundle?.getString("email")
@@ -132,18 +102,13 @@ class HomeFragment : Fragment() {
 //        sharedPreferences.edit().putString("email",email).apply()
 //    }
 //
-//    private fun logOut() {
-//        sharedPreferences.edit().clear().apply()
-//        FirebaseAuth.getInstance().signOut()
-//        (requireActivity() as HomeActivity).apply {
-//            startActivity(Intent(this, LoginActivity::class.java))
-//            finish()
-//        }
-//    }
-//
-//    private fun limpiarCampos() {
-//        binding.etCodigo.setText("")
-//        binding.etNombreArticulo.setText("")
-//        binding.etPrecio.setText("")
-//    }
+    private fun logOut() {
+        sharedPreferences.edit().clear().apply()
+        FirebaseAuth.getInstance().signOut()
+        (requireActivity() as HomeActivity).apply {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+
 }
