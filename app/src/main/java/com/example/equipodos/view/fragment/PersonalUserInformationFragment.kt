@@ -1,81 +1,61 @@
 package com.example.equipodos.view.fragment
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.os.Bundle
 import androidx.fragment.app.Fragment
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.equipodos.R
-import com.example.equipodos.databinding.FragmentPersonalUserInformationBinding
-import com.example.equipodos.databinding.FragmentProfileBinding
+import com.example.equipodos.viewmodel.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-
 class PersonalUserInformationFragment : Fragment() {
-    private lateinit var nombreUsuario: String
-    private lateinit var nombreApellido: List<String>
-    private lateinit var correo: String
     private lateinit var auth: FirebaseAuth
-    private lateinit var binding: FragmentPersonalUserInformationBinding
-    private lateinit var sharedPreferences: SharedPreferences
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPersonalUserInformationBinding.inflate(inflater)
-        binding.lifecycleOwner = this
-        return binding.root
+        return inflater.inflate(R.layout.fragment_personal_user_information, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences = requireActivity().getSharedPreferences("shared", Context.MODE_PRIVATE)
+        auth = FirebaseAuth.getInstance()
         setup()
         loadUserInformationFromFirebaseAuth(view)
     }
 
     private fun loadUserInformationFromFirebaseAuth(view: View) {
         val firebaseUser = auth.currentUser
-        val userFullName = firebaseUser?.displayName.toString()
-        val fullNameComponents = userFullName.split(" ")
-        val userName = fullNameComponents[0]
+        var userName = ""
+        var userLastName = ""
+        val email = firebaseUser?.email.toString()
 
-        if (fullNameComponents.size > 1) {
-            val userLastName = fullNameComponents[1]
-        } else {
-           val userLastName = ""
-        }
 
-        val editTexts = listOf(
-            view.findViewById<EditText>(R.id.editText),
-            view.findViewById<EditText>(R.id.editText2),
-            view.findViewById<EditText>(R.id.editText3)
-        )
-
-        for (editText in editTexts) {
-            if (editText.id == R.id.editText) {
-                editText.setText(userName)
-            } else if (editText.id == R.id.editText2) {
-                if (fullNameComponents.size > 1) {
-                    editText.setText(fullNameComponents[1])
-                } else {
-                    editText.setText("")
-                }
-            } else if (editText.id == R.id.editText3) {
-                editText.setText(firebaseUser?.email.toString())
+        viewModel.obtenerNombreApellidoUsuario(email) { nombre, apellido ->
+            if (nombre != null && apellido != null) {
+                // Utilizar el nombre y apellido obtenidos del ViewModel
+                userName = nombre
+                userLastName = apellido
+                view.findViewById<EditText>(R.id.nombre).setText(userName)
+                view.findViewById<EditText>(R.id.apellido).setText(userLastName)
+            } else {
+                // Manejar el caso en que no se pueda obtener el nombre y apellido
+                println("No se pudo obtener el nombre y apellido del usuario.")
             }
         }
+
+        view.findViewById<EditText>(R.id.editText3).setText(email)
     }
 
     private fun setup() {
-        auth = FirebaseAuth.getInstance()
-        binding.informacionDelUsarioToolbar.setNavigationOnClickListener {
+        view?.findViewById<View>(R.id.informacion_del_usario_toolbar)?.setOnClickListener {
             findNavController().popBackStack()
         }
     }

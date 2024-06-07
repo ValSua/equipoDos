@@ -56,6 +56,29 @@ class LoginRepository {
         return firebaseAuth.currentUser
     }
 
+    fun obtenerNombreApellidoUsuario(email: String, onComplete: (nombre: String?, apellido: String?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val usuarioRef = db.collection("usuarios").document(email)
+
+        usuarioRef.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val nombre = document.getString("nombre")
+                    val apellido = document.getString("apellido")
+                    onComplete(nombre, apellido)
+                } else {
+                    // El documento no existe para el usuario dado
+                    onComplete(null, null)
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Error al obtener el documento
+                onComplete(null, null)
+                // Aquí podrías imprimir o registrar el error para depuración
+                println("Error al obtener el documento del usuario: $exception")
+            }
+    }
+
     fun loginUser(email: String, pass: String, isLogin: (Boolean) -> Unit) {
 
         if (email.isNotEmpty() && pass.isNotEmpty()) {
