@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // Obtener rutinas y actualizar la lista
-        viewModel.obtenerIdRutinas(email) { rutinas ->
+        viewModel.obtenerIDRutinas(email) { rutinas ->
             rutinas?.let {
                 routinesList.clear()
                 routinesList.addAll(it)
@@ -74,9 +74,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setup() {
-        binding.btnLogOut.setOnClickListener {
-            logOut()
-        }
+//        binding.btnLogOut.setOnClickListener {
+//            logOut()
+//        }
 
         // En el Fragmento Origen (HomeFragment)
         binding.nuevarutina.setOnClickListener {
@@ -85,6 +85,12 @@ class HomeFragment : Fragment() {
                 putString("projectId", projectId)
             }
             findNavController().navigate(R.id.action_homeFragment_to_createRutineFragment)
+        }
+
+
+
+        binding.btnRutinas.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_self)
         }
 
         binding.btnPerfil.setOnClickListener {

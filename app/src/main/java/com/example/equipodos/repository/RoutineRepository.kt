@@ -75,6 +75,8 @@ class RoutineRepository {
     }
 
 
+
+
     fun obtenerRutina(email: String, index: Int, callback: (Routine?) -> Unit) {
         val usuarioRef = db.collection("usuarios").document(email)
         usuarioRef.get().addOnSuccessListener { document ->

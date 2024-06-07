@@ -45,6 +45,16 @@ class ProfileFragment : Fragment() {
         binding.btnSignOut.setOnClickListener {
             logOut()
         }
+
+        binding.btnRutinasnuevo.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
+        }
+
+        binding.btnPerfilself.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_self)
+        }
+
+
     }
 
     private fun logOut() {

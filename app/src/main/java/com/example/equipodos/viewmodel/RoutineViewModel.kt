@@ -34,6 +34,10 @@ class RoutineViewModel : ViewModel() {
         }
     }
 
+    fun obtenerIDRutinas(email: String, callback: (List<Pair<String, String>>?) -> Unit) {
+        routineRepository.obtenerIDRutinas(email, callback)
+    }
+
     fun actualizarRutina(email: String, key: Int, nuevosEjercicios: List<Exercise>) {
         routineRepository.actualizarRutina(email, key, nuevosEjercicios) { success ->
             _updateSuccess.value = success
