@@ -1,4 +1,4 @@
-package com.example.equipodos.view
+/*package com.example.equipodos.view
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -65,3 +65,4 @@ class ExerciseAdapter(private val exercises: MutableList<Exercise>) : RecyclerVi
         val deleteButton: ImageButton = itemView.findViewById(R.id.deleteButton)
     }
 }
+*/

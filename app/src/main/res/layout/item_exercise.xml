@@ -49,7 +49,7 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextNameExercise"/>
+            app:layout_constraintTop_toBottomOf="@+id/editTextNameExercise" />
 
         <EditText
             android:id="@+id/editTextSets"

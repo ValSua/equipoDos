@@ -1,9 +1,12 @@
 package com.example.equipodos.model
 
+import java.io.Serializable
+
 data class Routine(
-    val nombre: String,
-    val exercise: List<Exercise>
-)
+    var id: String = "",
+    val routineName: String = "",
+    val exercises: List<Exercise> = emptyList()
+): Serializable
 
 
 

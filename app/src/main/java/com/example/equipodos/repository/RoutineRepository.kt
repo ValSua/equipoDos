@@ -1,102 +1,50 @@
 package com.example.equipodos.repository
 
+import android.util.Log
 import com.example.equipodos.model.Exercise
 import com.example.equipodos.model.Routine
-import com.example.equipodos.model.Usuario
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.tasks.await
+import java.util.*
 
-// UsuarioRepository.kt
 class RoutineRepository {
 
-    private val db = FirebaseFirestore.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
+    suspend fun saveRoutine(routine: Routine) {
+        firestore.collection("routines").add(routine).await()
+    }
 
+    suspend fun getRoutines(): List<Routine> {
+        val querySnapshot: QuerySnapshot = firestore.collection("routines").get().await()
+        return querySnapshot.toObjects(Routine::class.java)
+    }
 
-    fun registrarRutina(email: String, rutina: Routine, callback: (Boolean) -> Unit) {
-        val usuarioRef = db.collection("usuarios").document(email)
-
-        usuarioRef.get().addOnSuccessListener { document ->
-            if (document.exists()) {
-                // El documento existe, actualizar la lista de rutinas
-                usuarioRef.update("rutinas", FieldValue.arrayUnion(rutina))
-                    .addOnCompleteListener { task ->
-                        callback(task.isSuccessful)
-                    }
-            } else {
-                // El documento no existe, crear uno nuevo con la rutina
-                val nuevoUsuario = Usuario(email, listOf(rutina), "", "")
-                usuarioRef.set(nuevoUsuario)
-                    .addOnCompleteListener { task ->
-                        callback(task.isSuccessful)
-                    }
-            }
-        }.addOnFailureListener {
-            callback(false)
-        }
+    suspend fun getRoutineById(routineId: String): Routine? {
+        Log.d("RoutineRepository", "Fetching routine with ID: $routineId")
+        val documentSnapshot = firestore.collection("routines").document(routineId).get().await()
+        val routine = documentSnapshot.toObject(Routine::class.java)
+        routine?.id = documentSnapshot.id
+        Log.d("RoutineRepository", "Fetched routine: $routine")
+        return routine
     }
 
 
-
-    fun obtenerRutina(email: String, index: Int, callback: (Routine?) -> Unit) {
-        val usuarioRef = db.collection("usuarios").document(email)
-        usuarioRef.get().addOnSuccessListener { document ->
-            if (document.exists()) {
-                val rutinas = document.get("rutinas") as? List<Map<String, Any>>
-                if (rutinas != null && index in 0 until rutinas.size) {
-                    val rutina = rutinas[index]
-                    val nombre = rutina["nombre"] as? String ?: ""
-                    val ejercicios = (rutina["exercise"] as? List<Map<String, Any>>)?.map { ejercicio ->
-                        Exercise(
-                            ejercicio["name"] as? String ?: "",
-                            (ejercicio["sets"] as? Long ?: 0).toInt(),
-                            (ejercicio["reps"] as? Long ?: 0).toInt()
-
-                        )
-                    } ?: emptyList()
-                    callback(Routine(nombre, ejercicios))
-                } else {
-                    callback(null) // Índice fuera de rango o rutinas es null
-                }
-            } else {
-                callback(null) // El documento no existe
-            }
-        }.addOnFailureListener {
-            callback(null) // Error al obtener el documento
+    suspend fun getExercisesForRoutine(routineId: String): List<Exercise> {
+        val documentSnapshot = firestore.collection("routines").document(routineId).get().await()
+        val exercisesMapList = documentSnapshot.get("exercises") as? List<Map<String, Any>> ?: emptyList()
+        val exercises = exercisesMapList.map { map ->
+            Exercise(
+                name = map["name"] as String,
+                sets = (map["sets"] as Long).toInt(),
+                reps = (map["reps"] as Long).toInt()
+            )
         }
-    }
-
-
-
-
-
-    fun actualizarRutina(email: String, index: Int, newExercises: List<Exercise>, callback: (Boolean) -> Unit) {
-        val usuarioRef = db.collection("usuarios").document(email)
-        usuarioRef.get().addOnSuccessListener { document ->
-            if (document.exists()) {
-                val rutinas = document.get("rutinas") as? MutableList<Map<String, Any>> ?: mutableListOf()
-                if (index in 0 until rutinas.size) {
-                    val rutina = rutinas[index].toMutableMap()
-                    rutina["exercise"] = newExercises.map { exercise ->
-                        mapOf(
-                            "name" to exercise.name,
-                            "sets" to exercise.sets,
-                            "reps" to exercise.reps
-                        )
-                    }
-                    rutinas[index] = rutina
-                    usuarioRef.update("rutinas", rutinas).addOnCompleteListener { task ->
-                        callback(task.isSuccessful)
-                    }
-                } else {
-                    callback(false) // El índice está fuera de rango
-                }
-            } else {
-                callback(false) // El documento no existe
-            }
-        }.addOnFailureListener {
-            callback(false) // Error al obtener el documento
-        }
+        Log.d("RoutineRepository", "Fetched exercises: $exercises")
+        return exercises
     }
 
 }

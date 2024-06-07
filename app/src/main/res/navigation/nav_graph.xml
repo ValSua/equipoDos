@@ -3,27 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/routineFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.equipodos.view.fragment.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/routineFragment"
+        android:name="com.example.equipodos.view.fragment.RoutineFragment"
+        android:label="fragment_routine"
+        tools:layout="@layout/fragment_routine" >
         <action
-            android:id="@+id/action_homeFragment_to_createRutineFragment"
-            app:destination="@id/createRutineFragment" />
+            android:id="@+id/action_routineFragment_to_createRoutineFragment"
+            app:destination="@id/createRoutineFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_editFragment"
-            app:destination="@id/editFragment" />
+            android:id="@+id/action_routineFragment_to_detailRoutineFragment3"
+            app:destination="@id/detailRoutineFragment" />
     </fragment>
     <fragment
-        android:id="@+id/createRutineFragment"
-        android:name="com.example.equipodos.view.fragment.CreateRutineFragment"
-        android:label="fragment_create_rutine"
-        tools:layout="@layout/fragment_create_rutine" />
+        android:id="@+id/createRoutineFragment"
+        android:name="com.example.equipodos.view.fragment.CreateRoutineFragment"
+        android:label="fragment_create_routine"
+        tools:layout="@layout/fragment_create_routine" />
+    <action
+        android:id="@+id/action_createRoutineFragment_to_routineFragment"
+        app:destination="@id/routineFragment" />
+
     <fragment
-        android:id="@+id/editFragment"
-        android:name="com.example.equipodos.view.fragment.EditFragment"
-        android:label="EditFragment" />
+        android:id="@+id/detailRoutineFragment"
+        android:name="com.example.equipodos.view.fragment.DetailRoutineFragment"
+        android:label="fragment_detail_routine"
+        tools:layout="@layout/fragment_detail_routine" />
 </navigation>
