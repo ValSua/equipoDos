@@ -45,7 +45,6 @@
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
                 android:textColor="@color/white"
-                android:textColorHint="@color/material_dynamic_neutral40"
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,7 +67,6 @@
                 android:inputType="textPassword"
                 android:padding="16dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="@color/material_dynamic_neutral40"
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
