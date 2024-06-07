@@ -61,6 +61,9 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
 
+    //recyclerview
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+
     // Compose
     implementation(platform("androidx.compose:compose-bom:2024.01.00"))
     implementation("androidx.compose.ui:ui")
@@ -80,6 +83,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
     implementation("com.google.firebase:firebase-appcheck-playintegrity")
+    implementation("com.google.firebase:firebase-firestore:24.0.0")
+
 
     // LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")

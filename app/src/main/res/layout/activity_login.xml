@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:background="#052F4E"
         android:padding="16dp"
-        tools:context=".view.LoginActivity">
+        tools:context=".view.`LoginActivity.kt`">
 
         <TextView
             android:id="@+id/tvTitleLogin"
@@ -30,12 +30,11 @@
             android:id="@+id/tilEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintEnabled="true"
             android:textColorHint="#FFFFFF"
+            app:hintEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/tilPass"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            >
+            app:layout_constraintStart_toStartOf="parent">
 
             <EditText
                 android:id="@+id/etEmail"
@@ -55,12 +54,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:textColorHint="#FFFFFF"
+            app:endIconDrawable="@drawable/ojito_blanco"
+            app:endIconMode="password_toggle"
             app:hintEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilEmail">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
