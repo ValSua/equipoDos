@@ -2,9 +2,11 @@ package com.example.equipodos.repository
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginRepository {
     private val firebaseAuth = FirebaseAuth.getInstance()
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
 
 
@@ -44,7 +46,7 @@ class LoginRepository {
                 }
             }
         }
-    }
+    }*/
 
 
 
